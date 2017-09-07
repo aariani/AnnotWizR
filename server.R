@@ -4,6 +4,8 @@
 #
 # http://shiny.rstudio.com
 #
+# increase input file size
+options(shiny.maxRequestSize=-1)
 
 library(shiny)
 
