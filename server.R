@@ -8,16 +8,14 @@
 library(shiny)
 
 shinyServer(function(input, output) {
-
-  output$distPlot <- renderPlot({
-
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-
+  # conditional panels for SNPs file input
+  output$slider_kb<-renderUI({
+    sliderInput("dist_kb", "Select distance from SNPs (Kb)",
+                min=0, max=200, value=5)
   })
-
-})
+  output$slider_pval<-renderUI({
+    sliderInput("pval_cutoff", "Select P value cut-off", 
+                min=0, max=1, value = 0.05, step = 0.01)
+    })
+  
+  })
