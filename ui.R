@@ -38,12 +38,13 @@ shinyUI(fluidPage(
       fileInput("file_in", label="Select input file", accept = ".csv"),
       # Conditional panels for SNPs file input
       conditionalPanel(condition="input.filetype=='snps'", uiOutput("slider_kb")),
-      conditionalPanel(condition = "input.filetype=='snps'", uiOutput("slider_pval"))
+      conditionalPanel(condition = "input.filetype=='snps'", uiOutput("slider_pval")),
+      downloadButton('downloaddata', 'Export Results')
     ),
 
-    # Show a plot of the generated distribution
+    # Show a plot of the annotation table for each SNPs
     mainPanel(
-      plotOutput("distPlot")
+      dataTableOutput('annot_res')
     )
   )
 ))
